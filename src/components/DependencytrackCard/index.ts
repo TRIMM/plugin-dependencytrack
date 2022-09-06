@@ -1,0 +1,1 @@
+export { DependencytrackSummaryCard, DependencytrackFindingCard } from './DependencytrackCard';

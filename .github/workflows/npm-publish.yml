@@ -30,6 +30,6 @@ jobs:
       - run: yarn install
       - run: yarn tsc
       - run: yarn build
-      - run: yarn npm publish
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

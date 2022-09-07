@@ -1,8 +1,8 @@
 import { useEntity } from '@backstage/plugin-catalog-react';
 import React from 'react';
-import { dependencytrackPlugin } from './plugin';
+import { dependencytrackPlugin, rootRouteRef } from './plugin';
 import {
-  createComponentExtension,  
+  createComponentExtension, createRoutableExtension,  
 } from '@backstage/core-plugin-api';
 import { Options } from '@material-table/core';
 
@@ -71,5 +71,33 @@ export const EntityDependencytrackSummaryCard = dependencytrackPlugin.provide(
             },
           ),
       },
-    }),
+    }),    
+  );
+
+  export const EntityDependencytrackContent = dependencytrackPlugin.provide(
+    createRoutableExtension({
+      name: 'EntityDependencytrackContent',
+      mountPoint: rootRouteRef,
+      component: () => 
+      import('./components/DependencytrackCard').then(
+          ({ DependencytrackFindingCard }) => {
+            const DependencytrackPage = (props: DependencytrackPageProps) => {
+              const { entity } = useEntity();
+              const defaultOptions: Options<never> = {
+                padding: 'dense',
+                paging: true,
+                search: false,
+                pageSize: 5,
+              };
+              return (
+                <DependencytrackFindingCard
+                  entity={entity}
+                  tableOptions={{ ...defaultOptions, ...props.tableOptions }}
+                />
+              );
+            };
+            return DependencytrackPage;
+          },
+        ),        
+    })
   );

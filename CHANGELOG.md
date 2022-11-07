@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.2](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.2.1...v0.2.2) (2022-11-07)
+
+
+### Bug Fixes
+
+* let release-please use my token as GH actions don't trigger other GH actions ([3cdecf4](https://github.com/TRIMM/plugin-dependencytrack/commit/3cdecf48f7797c66f0e2a9a9ccbc9fc86d15b0c2))
+
 ## [0.2.1](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.2.0...v0.2.1) (2022-11-07)
 
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.1.5...v0.2.0) (2022-11-07)
+
+
+### Features
+
+* added release-please statements to workflow ([54a6413](https://github.com/TRIMM/plugin-dependencytrack/commit/54a64133078208390001135e6907b931348ae443))
+
 ### [0.1.5](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.1.4...v0.1.5) (2022-09-07)
 
 

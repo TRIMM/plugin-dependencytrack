@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.1](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.2.0...v0.2.1) (2022-11-07)
+
+
+### Bug Fixes
+
+* fixed trigger for when to build new npm package ([d51ce68](https://github.com/TRIMM/plugin-dependencytrack/commit/d51ce68e98eff61a086b134e4a92f815df07f233))
+
 ## [0.2.0](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.1.5...v0.2.0) (2022-11-07)
 
 

@@ -22,7 +22,7 @@ proxy:
     target: <DEPENDENCYTRACK_API_URL>  
     allowedMethods: ['GET']
     headers:
-      X-Api-Key: '<DEPENDENCYTRACK_API_URL>'
+      X-Api-Key: '<DEPENDENCYTRACK_API_KEY>'
 ```
 
 Don't forget to replace the placeholders identified by the carets.

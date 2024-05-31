@@ -1,5 +1,3 @@
-import { RandomUUIDOptions } from "crypto";
-
 export type DependencytrackProject = {
     author: string;
     publisher: string;
@@ -20,7 +18,7 @@ export type DependencytrackProject = {
     findings: Finding[];    
 }
 
-enum CLASSIFIER {
+export enum CLASSIFIER {
     APPLICATION,
     FRAMEWORK,
     LIBRARY,
@@ -58,18 +56,18 @@ export type Finding = {
 }
 
 export type Component = {
-    author: string;
-    publisher: string;
-    group: string;
+    author?: string;
+    publisher?: string;
+    group?: string;
+    classifier?: string;
+    uuid: string;
     name: string;
     version: string;
-    classifier: string;
-    uuid: string;
     purl: string;
     project: string;
 }
 
-enum SEVERITY {
+export enum SEVERITY {
     CRITICAL,
     HIGH,   
     MEDIUM,
@@ -82,22 +80,25 @@ export type Vulnerability = {
     uuid: string;
     source: string;
     vulnId: string;
-    title: string;
+    title?: string;
     severity: SEVERITY;
     severityRank: number;
-    cweId: number;
-    cweName: string;
-    cwes: cwe[];
+    epssScore: number;
+    epssPercentile: number;
+    cweId?: number;
+    cweName?: string;
+    cwes?: cwe[];
+    aliases: string[];
     description: string;
-    recommendation: string;
-    cvssV2BaseScore: number;
-    cvssV2ImpactSubScore: number;
-    cvssV2ExploitabilitySubScore: number;
-    cvssV2Vector: string;
-    cvssV3BaseScore: number;
-    cvssV3ImpactSubScore: number;
-    cvssV3ExploitabilitySubScore: number;
-    cvssV3Vector: string;
+    recommendation: string | null;
+    cvssV2BaseScore?: number;
+    cvssV2ImpactSubScore?: number;
+    cvssV2ExploitabilitySubScore?: number;
+    cvssV2Vector?: string;
+    cvssV3BaseScore?: number;
+    cvssV3ImpactSubScore?: number;
+    cvssV3ExploitabilitySubScore?: number;
+    cvssV3Vector?: string;
 }
 
 export type cwe = {
@@ -106,10 +107,10 @@ export type cwe = {
 }
 
 export type Analyis = {
-    isSupressed: boolean;
+    isSuppressed: boolean;
 }
 
-enum ANALYZER_IDENTITY {
+export enum ANALYZER_IDENTITY {
     INTERNAL_ANALYZER,
     OSSINDEX_ANALYZER,
     NPM_AUDIT_ANALYZER,
@@ -119,5 +120,7 @@ enum ANALYZER_IDENTITY {
 
 export type Attribution = {
     analyzerIdentity: ANALYZER_IDENTITY;
-    attributedOn: string;
+    attributedOn: number;
+    alternateIdentifier: string;
+    referenceUrl: string;
 }

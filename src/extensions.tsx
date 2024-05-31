@@ -1,6 +1,7 @@
 import { useEntity } from '@backstage/plugin-catalog-react';
 import React from 'react';
-import { dependencytrackPlugin, rootRouteRef } from './plugin';
+import { dependencytrackPlugin } from './plugin';
+import { rootRouteRef } from './routes';
 import {
   createComponentExtension, createRoutableExtension,  
 } from '@backstage/core-plugin-api';

@@ -5,6 +5,19 @@ import { Options } from '@material-table/core';
 import { Finding } from '../../api/dependencytrack-types';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 
+const getComponentUrl = (finding: Finding) => {
+    return `${useApi(configApiRef).getString('dependencytrack.baseUrl')}/components/${finding.component.uuid}`;    
+}
+
+const defineSeverityScore = (finding: Finding) => {
+    if(finding.vulnerability.cvssV3BaseScore){
+        return finding.vulnerability.cvssV3BaseScore;
+    } else if(finding.vulnerability.cvssV2BaseScore){
+        return finding.vulnerability.cvssV2BaseScore;
+    }
+    return '-';
+}
+
 const columns: TableColumn[] = [
 
     {
@@ -34,22 +47,9 @@ const columns: TableColumn[] = [
 
 ];
 
-const getComponentUrl = (finding: Finding) => {
-     return `${useApi(configApiRef).getString('dependencytrack.baseUrl')}/components/${finding.component.uuid}`;    
-}
-
-const defineSeverityScore = (finding: Finding) => {
-    if(finding.vulnerability.cvssV3BaseScore){
-        return finding.vulnerability.cvssV3BaseScore;
-    } else if(finding.vulnerability.cvssV2BaseScore){
-        return finding.vulnerability.cvssV2BaseScore;
-    }
-    return '-';
-}
-
 type DependencytrackFindingsTableProps = {
     findings?: Finding[];
-    tableOptions: Options<never>;    
+    tableOptions: Options<{}>;    
 };
 
 const DependencytrackFindingsTable = ({

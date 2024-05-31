@@ -19,7 +19,7 @@ const columns: TableColumn[] = [
 
 type DependencytrackMetricsTableProps = {
   projectMetrics?: ProjectMetrics;
-    tableOptions: Options<never>;
+    tableOptions?: Options<{}>;
 };
 
 const kv = (obj: {[k: string]: number}) => metrictypes.reduce((acc, key: string) => {

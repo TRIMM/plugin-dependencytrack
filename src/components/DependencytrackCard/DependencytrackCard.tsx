@@ -17,7 +17,7 @@ import DependencytrackFindingTable from '../DependencytrackTable/Dependencytrack
   }: {
     entity: Entity;    
     variant?: InfoCardVariants;
-    tableOptions: Options<never>;
+    tableOptions: Options<{}>;
   }) => {
     const errorApi = useApi<ErrorApi>(errorApiRef);
     const dependencytrackApi = useApi(dependencytrackApiRef);
@@ -71,7 +71,7 @@ import DependencytrackFindingTable from '../DependencytrackTable/Dependencytrack
   }: {
     entity: Entity;    
     variant?: InfoCardVariants;
-    tableOptions: Options<never>;
+    tableOptions: Options<{}>;
   }) => {
     const errorApi = useApi<ErrorApi>(errorApiRef);
     const dependencytrackApi = useApi(dependencytrackApiRef);

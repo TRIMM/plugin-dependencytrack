@@ -41,10 +41,13 @@ export const metrictypes = [
     "findingsTotal",
     "findingsAudited",
     "findingsUnaudited",
-    "inheritedRiskScore"    
+    "inheritedRiskScore",
+    "firstOccurrence",
+    "lastOccurrence"
 ] as const;
+
 export type ProjectMetrics = {
-    [k in keyof typeof metrictypes]: number;
+    [k in typeof metrictypes[number]]: number;
 };
 
 export type Finding = {    
@@ -85,9 +88,9 @@ export type Vulnerability = {
     severityRank: number;
     epssScore: number;
     epssPercentile: number;
-    cweId?: number;
-    cweName?: string;
-    cwes?: cwe[];
+    cweId: number;
+    cweName: string;
+    cwes: cwe[];
     aliases: string[];
     description: string;
     recommendation: string | null;

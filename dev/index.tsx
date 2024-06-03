@@ -138,7 +138,7 @@ for (let i = 0; i < 10; i++) {
 }
 
 const mockedApi: DependencytrackApi = {
-  fetchProject: function (entity: Entity): Promise<DependencytrackProject> {
+  fetchProject(): Promise<DependencytrackProject> {
     const data: DependencytrackProject = {
       author: '',
       publisher: '',
@@ -160,10 +160,10 @@ const mockedApi: DependencytrackApi = {
     };
     return Promise.resolve(data);
   },
-  fetchFindings: function (entity: Entity): Promise<Finding[]> {
+  fetchFindings(): Promise<Finding[]> {
     return Promise.resolve(findings);
   },
-  fetchMetrics: function (entity: Entity): Promise<ProjectMetrics> {
+  fetchMetrics(): Promise<ProjectMetrics> {
     return Promise.resolve(projectMetrics);
   }
 };

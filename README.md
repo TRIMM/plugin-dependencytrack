@@ -13,19 +13,20 @@ Add config in `app-config.yaml`.
 Integration:
 ```yaml
 dependencytrack:
-  baseUrl: <DEPENDENCYTRACK_INSTANCE_URL>
+  baseUrl: ${DEPENDENCYTRACK_BASE_URL}
 ```
 Proxy:
 ```yaml
 proxy:
-  '/dependencytrack':
-    target: <DEPENDENCYTRACK_API_URL>  
-    allowedMethods: ['GET']
-    headers:
-      X-Api-Key: '<DEPENDENCYTRACK_API_URL>'
+  endpoints:
+    '/dependencytrack':
+      target: ${DEPENDENCYTRACK_BASE_URL}
+      allowedMethods: [ 'GET' ]
+      headers:
+        X-Api-Key: ${DEPENDENCYTRACK_API_KEY}
 ```
 
-Don't forget to replace the placeholders identified by the carets.
+Don't forget to replace the variables with the values for your specific environment.
 
 ### Add cards to overview tab
 ```tsx

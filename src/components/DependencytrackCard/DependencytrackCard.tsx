@@ -1,4 +1,5 @@
-import { EmptyState, InfoCard, InfoCardVariants, MissingAnnotationEmptyState, Progress } from '@backstage/core-components';
+import { EmptyState, InfoCard, InfoCardVariants, Progress } from '@backstage/core-components';
+import { MissingAnnotationEmptyState } from '@backstage/plugin-catalog-react'
 import { ErrorApi, errorApiRef, useApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import { Options } from '@material-table/core';
@@ -16,7 +17,7 @@ import DependencytrackFindingTable from '../DependencytrackTable/Dependencytrack
   }: {
     entity: Entity;    
     variant?: InfoCardVariants;
-    tableOptions: Options<never>;
+    tableOptions: Options<{}>;
   }) => {
     const errorApi = useApi<ErrorApi>(errorApiRef);
     const dependencytrackApi = useApi(dependencytrackApiRef);
@@ -70,7 +71,7 @@ import DependencytrackFindingTable from '../DependencytrackTable/Dependencytrack
   }: {
     entity: Entity;    
     variant?: InfoCardVariants;
-    tableOptions: Options<never>;
+    tableOptions: Options<{}>;
   }) => {
     const errorApi = useApi<ErrorApi>(errorApiRef);
     const dependencytrackApi = useApi(dependencytrackApiRef);

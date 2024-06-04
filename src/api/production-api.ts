@@ -67,8 +67,7 @@ export class ProductionDependencytrackApi implements DependencytrackApi {
             throw new Error('Failed fetching Dependencytrack project');
         }
         
-        let simpleProject = (await simpleResponse.json()) as DependencytrackProject;
-   
+        const simpleProject = (await simpleResponse.json()) as DependencytrackProject;
         return simpleProject;        
     }
 

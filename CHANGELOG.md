@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.2.2...v0.3.0) (2024-06-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* updates to support Backstage version 1.27.5 ([#87](https://github.com/TRIMM/plugin-dependencytrack/issues/87))
+
+### Features
+
+* added ability to test locally using mock data. ([39631ec](https://github.com/TRIMM/plugin-dependencytrack/commit/39631ec7ef64fdfc998d940e98e06a470b7d530a))
+
+
+### Bug Fixes
+
+* `release-please` action now makes use of the default `secrets.GITHUB_TOKEN`. ([c852c90](https://github.com/TRIMM/plugin-dependencytrack/commit/c852c90d4185409af2cccf111892406f88d4c45f))
+* fixed all tsc warnings and errors. ([39631ec](https://github.com/TRIMM/plugin-dependencytrack/commit/39631ec7ef64fdfc998d940e98e06a470b7d530a))
+* updates to support Backstage version 1.27.5 ([#87](https://github.com/TRIMM/plugin-dependencytrack/issues/87)) ([39631ec](https://github.com/TRIMM/plugin-dependencytrack/commit/39631ec7ef64fdfc998d940e98e06a470b7d530a))
+
 ## [0.2.2](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.2.1...v0.2.2) (2022-11-07)
 
 

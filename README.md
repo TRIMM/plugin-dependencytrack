@@ -63,5 +63,5 @@ kind: Component
 metadata:
   # ...
   annotations:
-  dependencytrack/project-id: <project-id> # e63d5397-5e9e-494a-4755-368c2b1dc446
+    dependencytrack/project-id: <project-id> # e63d5397-5e9e-494a-4755-368c2b1dc446
 ```

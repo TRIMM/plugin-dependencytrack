@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.2](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.3.1...v0.3.2) (2024-06-26)
+
+
+### Bug Fixes
+
+* **documentation:** README.MD indent annotation ([1ee1c47](https://github.com/TRIMM/plugin-dependencytrack/commit/1ee1c47153e9f3efe28dd3a72dccb23f0be64e30))
+
 ## [0.3.1](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.3.0...v0.3.1) (2024-06-04)
 
 

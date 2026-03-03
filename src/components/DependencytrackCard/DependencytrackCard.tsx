@@ -3,7 +3,7 @@ import { MissingAnnotationEmptyState } from '@backstage/plugin-catalog-react'
 import { ErrorApi, errorApiRef, useApi } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 import { Options } from '@material-table/core';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import useAsync from 'react-use/lib/useAsync';
 import { dependencytrackApiRef } from '../../api';
 import { DEPENDENCYTRACK_PROJECT_ID_ANNOTATION, useProjectId } from '../hooks';

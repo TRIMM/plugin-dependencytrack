@@ -1,4 +1,3 @@
-import React from 'react';
 import { KeyCell, ValueCell } from './DataCell';
 import { Table, TableColumn } from '@backstage/core-components';
 import { Options } from '@material-table/core';

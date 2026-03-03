@@ -1,11 +1,10 @@
-import React from 'react';
 import { Entity } from '@backstage/catalog-model';
 import { createDevApp } from '@backstage/dev-utils';
 import { dependencytrackPlugin } from '../src/plugin';
 import { Content, Header, Page } from '@backstage/core-components';
 import { EntityProvider } from '@backstage/plugin-catalog-react';
 import { TestApiProvider } from '@backstage/test-utils';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { EntityDependencytrackSummaryCard, EntityDependencytrackFindingCard, DependencytrackApi, dependencytrackApiRef, DependencytrackProject, ProjectMetrics } from '../src';
 import { ANALYZER_IDENTITY, CLASSIFIER, Finding, SEVERITY } from '../src/api/dependencytrack-types';
 

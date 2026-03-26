@@ -1,5 +1,4 @@
 import { useEntity } from '@backstage/plugin-catalog-react';
-import React from 'react';
 import { dependencytrackPlugin } from './plugin';
 import { rootRouteRef } from './routes';
 import {

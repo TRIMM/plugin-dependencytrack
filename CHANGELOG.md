@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.3](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.3.2...v0.3.3) (2026-03-27)
+
+
+### Bug Fixes
+
+* **ci:** add corepack enable for yarn 4 compatibility in npm publish workflow ([2ac17d1](https://github.com/TRIMM/plugin-dependencytrack/commit/2ac17d16a0f8411400546e80fbf44f684d6f2745))
+* **ci:** add corepack enable for yarn 4 compatibility in npm publish workflow ([fb59bc9](https://github.com/TRIMM/plugin-dependencytrack/commit/fb59bc953cf42543637cd3ca0d66c3ababd162bc))
+
 ## [0.3.2](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.3.1...v0.3.2) (2026-03-26)
 
 

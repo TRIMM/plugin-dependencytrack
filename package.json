@@ -11,8 +11,12 @@
   },
   "backstage": {
     "role": "frontend-plugin",
-    "pluginId": "dependencytrack"
+    "pluginId": "dependencytrack",
+    "pluginPackages": [
+      "@trimm/plugin-dependencytrack"
+    ]
   },
+  "sideEffects": false,
   "scripts": {
     "start": "backstage-cli package start",
     "build": "backstage-cli package build",

@@ -7055,10 +7055,12 @@ __metadata:
   dependencies:
     "@backstage/catalog-model": "npm:^1.7.7"
     "@backstage/cli": "npm:^0.36.0"
+    "@backstage/cli-defaults": "npm:^0.1.0"
     "@backstage/core-app-api": "npm:^1.19.6"
     "@backstage/core-components": "npm:^0.18.8"
     "@backstage/core-plugin-api": "npm:^1.12.4"
     "@backstage/dev-utils": "npm:^1.1.21"
+    "@backstage/frontend-plugin-api": "npm:^0.15.0"
     "@backstage/plugin-auth-backend-module-guest-provider": "npm:^0.2.17"
     "@backstage/plugin-catalog": "npm:^1.33.1"
     "@backstage/plugin-catalog-react": "npm:^2.1.0"

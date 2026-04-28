@@ -14,9 +14,9 @@ const severityOrderMap: Record<string, number> = {
 };
 
 const defineSeverityScore = (finding: Finding): number | undefined => {
-  if (finding.vulnerability.cvssV3BaseScore) {
+  if (finding.vulnerability.cvssV3BaseScore != null) {
     return finding.vulnerability.cvssV3BaseScore;
-  } else if (finding.vulnerability.cvssV2BaseScore) {
+  } else if (finding.vulnerability.cvssV2BaseScore != null) {
     return finding.vulnerability.cvssV2BaseScore;
   }
   return undefined;

@@ -26,7 +26,7 @@ export const StringCell = ({ text }: { text: string }) => (
 
 export const LinkCell = ({ text, url }: { text: string; url: string }) => (
   <Box>
-    <Link href={url} target="_blank">
+    <Link href={url} target="_blank" rel="noopener noreferrer">
       {text}
     </Link>
   </Box>

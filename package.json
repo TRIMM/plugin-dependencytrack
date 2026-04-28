@@ -39,7 +39,9 @@
     "test": "backstage-cli package test",
     "clean": "backstage-cli package clean",
     "prepack": "backstage-cli package prepack",
-    "postpack": "backstage-cli package postpack"
+    "postpack": "backstage-cli package postpack",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write ."
   },
   "dependencies": {
     "@backstage/catalog-model": "^1.7.7",
@@ -48,10 +50,10 @@
     "@backstage/frontend-plugin-api": "^0.15.0",
     "@backstage/plugin-catalog-react": "^2.1.0",
     "@backstage/theme": "^0.7.2",
+    "@backstage/ui": "^0.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@material-table/core": "^3.1.0",
-    "@mui/material": "^5.18.0",
     "react-use": "^17.6.0"
   },
   "peerDependencies": {
@@ -76,6 +78,7 @@
     "jest": "^30.0.0",
     "jsdom": "^29.0.0",
     "msw": "^2.0.0",
+    "prettier": "^3.8.3",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "react-router-dom": "^6.3.0",

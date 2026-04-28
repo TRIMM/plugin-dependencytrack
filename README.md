@@ -54,7 +54,7 @@ proxy:
   endpoints:
     '/dependencytrack':
       target: ${DEPENDENCYTRACK_BASE_URL}
-      allowedMethods: [ 'GET' ]
+      allowedMethods: ['GET']
       headers:
         X-Api-Key: ${DEPENDENCYTRACK_API_KEY}
 ```

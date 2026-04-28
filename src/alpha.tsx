@@ -3,12 +3,11 @@ import {
   createFrontendPlugin,
   discoveryApiRef,
   identityApiRef,
+  type ExtensionDefinition,
+  type OverridableFrontendPlugin,
 } from '@backstage/frontend-plugin-api';
 import { useEntity } from '@backstage/plugin-catalog-react';
-import {
-  EntityCardBlueprint,
-  EntityContentBlueprint,
-} from '@backstage/plugin-catalog-react/alpha';
+import { EntityCardBlueprint, EntityContentBlueprint } from '@backstage/plugin-catalog-react/alpha';
 import { Options } from '@material-table/core';
 import { dependencytrackApiRef, ProductionDependencytrackApi } from './api';
 import {
@@ -39,13 +38,12 @@ const defaultFindingTableOptions: Options<never> = {
 const defaultContentTableOptions: Options<never> = {
   padding: 'dense',
   paging: true,
-  search: false,
-  pageSize: 5,
+  search: true,
+  pageSize: 15,
+  pageSizeOptions: [15, 30, 60],
 };
 
-export const DependencytrackSummaryCard = (
-  props: DependencytrackPageProps,
-) => {
+export const DependencytrackSummaryCard = (props: DependencytrackPageProps) => {
   const { entity } = useEntity();
 
   return (
@@ -56,9 +54,7 @@ export const DependencytrackSummaryCard = (
   );
 };
 
-export const DependencytrackFindingCard = (
-  props: DependencytrackPageProps,
-) => {
+export const DependencytrackFindingCard = (props: DependencytrackPageProps) => {
   const { entity } = useEntity();
 
   return (
@@ -69,15 +65,14 @@ export const DependencytrackFindingCard = (
   );
 };
 
-const DependencytrackContent = (props: DependencytrackPageProps) => {
+export const DependencytrackContent = (props: DependencytrackPageProps) => {
   const { entity } = useEntity();
+  const tableOptions = {
+    ...defaultContentTableOptions,
+    ...props.tableOptions,
+  };
 
-  return (
-    <DependencytrackFindingCardComponent
-      entity={entity}
-      tableOptions={{ ...defaultContentTableOptions, ...props.tableOptions }}
-    />
-  );
+  return <DependencytrackFindingCardComponent entity={entity} tableOptions={tableOptions} />;
 };
 
 const dependencytrackApi = ApiBlueprint.make({
@@ -93,7 +88,7 @@ const dependencytrackApi = ApiBlueprint.make({
     }),
 });
 
-export const EntityDependencytrackSummaryCard = EntityCardBlueprint.make({
+export const EntityDependencytrackSummaryCard: ExtensionDefinition = EntityCardBlueprint.make({
   name: 'summary',
   params: {
     type: 'info',
@@ -102,7 +97,7 @@ export const EntityDependencytrackSummaryCard = EntityCardBlueprint.make({
   },
 });
 
-export const EntityDependencytrackFindingCard = EntityCardBlueprint.make({
+export const EntityDependencytrackFindingCard: ExtensionDefinition = EntityCardBlueprint.make({
   name: 'findings',
   params: {
     type: 'content',
@@ -111,7 +106,7 @@ export const EntityDependencytrackFindingCard = EntityCardBlueprint.make({
   },
 });
 
-export const EntityDependencytrackContent = EntityContentBlueprint.make({
+export const EntityDependencytrackContent: ExtensionDefinition = EntityContentBlueprint.make({
   name: 'dependencytrack',
   params: {
     path: '/dependencytrack',
@@ -122,7 +117,9 @@ export const EntityDependencytrackContent = EntityContentBlueprint.make({
   },
 });
 
-export default createFrontendPlugin({
+const dependencytrackPlugin: OverridableFrontendPlugin<{
+  root: typeof rootRouteRef;
+}> = createFrontendPlugin({
   pluginId: 'dependencytrack',
   title: 'Dependencytrack',
   routes: {
@@ -131,10 +128,12 @@ export default createFrontendPlugin({
   extensions: [
     dependencytrackApi,
     EntityDependencytrackSummaryCard,
-    EntityDependencytrackFindingCard,
+    // EntityDependencytrackFindingCard # Uncomment if findings should also be shown in the overview page
     EntityDependencytrackContent,
   ],
 });
+
+export default dependencytrackPlugin;
 
 export { dependencytrackApiRef } from './api';
 export type { DependencytrackApi } from './api';

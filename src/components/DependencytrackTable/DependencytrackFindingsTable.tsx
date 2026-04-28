@@ -4,69 +4,122 @@ import { Options } from '@material-table/core';
 import { Finding } from '../../api/dependencytrack-types';
 import { configApiRef, useApi } from '@backstage/core-plugin-api';
 
-const defineSeverityScore = (finding: Finding) => {
-    if(finding.vulnerability.cvssV3BaseScore){
-        return finding.vulnerability.cvssV3BaseScore;
-    } else if(finding.vulnerability.cvssV2BaseScore){
-        return finding.vulnerability.cvssV2BaseScore;
-    }
-    return '-';
-}
+const severityOrderMap: Record<string, number> = {
+  UNASSIGNED: 0,
+  INFO: 1,
+  LOW: 2,
+  MEDIUM: 3,
+  HIGH: 4,
+  CRITICAL: 5,
+};
+
+const defineSeverityScore = (finding: Finding): number | undefined => {
+  if (finding.vulnerability.cvssV3BaseScore) {
+    return finding.vulnerability.cvssV3BaseScore;
+  } else if (finding.vulnerability.cvssV2BaseScore) {
+    return finding.vulnerability.cvssV2BaseScore;
+  }
+  return undefined;
+};
+
+const defineSeverityOrder = (finding: Finding): number => {
+  const rawSeverity = finding.vulnerability.severity as unknown;
+
+  if (typeof rawSeverity === 'number') {
+    return rawSeverity;
+  }
+
+  const normalizedSeverity = String(rawSeverity).toUpperCase();
+  return severityOrderMap[normalizedSeverity] ?? finding.vulnerability.severityRank;
+};
+
+type FindingRow = {
+  dependency: string;
+  name: string;
+  version: string;
+  severity: string;
+  severityOrder: number;
+  score: number | null;
+  vulnerability: string;
+  componentUrl: string;
+};
 
 type DependencytrackFindingsTableProps = {
-    findings?: Finding[];
-    tableOptions: Options<{}>;    
+  findings?: Finding[];
+  tableOptions: Options<{}>;
 };
 
 const DependencytrackFindingsTable = ({
-    findings,   
-    tableOptions,    
-  }: DependencytrackFindingsTableProps) => {
-    const config = useApi(configApiRef);
-    const baseUrl = config.getString('dependencytrack.baseUrl');
+  findings,
+  tableOptions,
+}: DependencytrackFindingsTableProps) => {
+  const config = useApi(configApiRef);
+  const baseUrl = config.getString('dependencytrack.baseUrl');
 
-    const getComponentUrl = (finding: Finding) => {
-      return `${baseUrl}/components/${finding.component.uuid}`;
-    };
-
-    const columns: TableColumn[] = [
-      {
-        title: 'Dependency',
-        render: data => <LinkCell url={getComponentUrl((data as Finding))} text={(data as Finding).component.name} />
-      },
-      {
-        title: 'Name',
-        render: data => <StringCell text={(data as Finding).vulnerability.cweName}/>,
-      },
-      {
-        title: 'Version',
-        render: data => <StringCell text={(data as Finding).component.version} />
-      },
-      {
-        title: 'Severity',
-        render: data => <StringCell text={(data as Finding).vulnerability.severity.toString()} />
-      },
-      {
-        title: 'Score',
-        render: data => <StringCell text={defineSeverityScore((data as Finding)).toString()} />
-      },
-      {
-        title: 'Vulnerability',
-        render: data => <StringCell text={(data as Finding).vulnerability.vulnId}/>
-      }
-    ];
-
-    if(!findings){
-      throw new Error('Failed rendering table');
-    }    
-    return (
-      <Table
-        columns={columns}
-        options={tableOptions}
-        title="Dependencytrack Findings"        
-        data={findings}        
-      />
-    );
+  const getComponentUrl = (finding: Finding) => {
+    return `${baseUrl}/components/${finding.component.uuid}`;
   };
 
-  export default DependencytrackFindingsTable;
+  const rows: FindingRow[] = (findings ?? []).map(finding => ({
+    dependency: finding.component.name,
+    name: finding.vulnerability.cweName,
+    version: finding.component.version,
+    severity: finding.vulnerability.severity.toString(),
+    severityOrder: defineSeverityOrder(finding),
+    score: defineSeverityScore(finding) ?? null,
+    vulnerability: finding.vulnerability.vulnId,
+    componentUrl: getComponentUrl(finding),
+  }));
+
+  const columns: TableColumn<FindingRow>[] = [
+    {
+      title: 'Dependency',
+      field: 'dependency',
+      render: data => (
+        <LinkCell url={(data as FindingRow).componentUrl} text={(data as FindingRow).dependency} />
+      ),
+    },
+    {
+      title: 'Name',
+      field: 'name',
+      render: data => <StringCell text={(data as FindingRow).name} />,
+    },
+    {
+      title: 'Version',
+      field: 'version',
+      render: data => <StringCell text={(data as FindingRow).version} />,
+    },
+    {
+      title: 'Severity',
+      field: 'severity',
+      customSort: (a, b) => a.severityOrder - b.severityOrder,
+      render: data => <StringCell text={(data as FindingRow).severity} />,
+    },
+    {
+      title: 'Score',
+      field: 'score',
+      type: 'numeric',
+      customSort: (a, b) => (a.score ?? -1) - (b.score ?? -1),
+      render: data => <StringCell text={(data as FindingRow).score?.toString() ?? '-'} />,
+    },
+    {
+      title: 'Vulnerability',
+      field: 'vulnerability',
+      render: data => <StringCell text={(data as FindingRow).vulnerability} />,
+    },
+  ];
+
+  if (!findings) {
+    throw new Error('Failed rendering table');
+  }
+  return (
+    <Table<FindingRow>
+      columns={columns}
+      options={tableOptions as Options<FindingRow>}
+      title="Dependencytrack Findings"
+      data={rows}
+    />
+  );
+};
+
+export default DependencytrackFindingsTable;

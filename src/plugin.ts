@@ -15,14 +15,10 @@ export const dependencytrackPlugin = createPlugin({
       api: dependencytrackApiRef,
       deps: {
         discoveryApi: discoveryApiRef,
-        identityApi: identityApiRef
+        identityApi: identityApiRef,
       },
-      factory: ({
-        discoveryApi, identityApi
-      }) =>
-      new ProductionDependencytrackApi(
-        discoveryApi, identityApi,
-      ),
+      factory: ({ discoveryApi, identityApi }) =>
+        new ProductionDependencytrackApi(discoveryApi, identityApi),
     }),
   ],
   routes: {

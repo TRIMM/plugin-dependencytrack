@@ -3,19 +3,13 @@ import { createApiRef } from '@backstage/core-plugin-api';
 import { Entity } from '@backstage/catalog-model';
 
 export const dependencytrackApiRef = createApiRef<DependencytrackApi>({
-    id: 'plugin.dependencytrack.service',
+  id: 'plugin.dependencytrack.service',
 });
 
 export interface DependencytrackApi {
-    fetchProject(
-        entity: Entity,     
-    ): Promise<DependencytrackProject>;
+  fetchProject(entity: Entity): Promise<DependencytrackProject>;
 
-    fetchFindings(
-        entity: Entity,
-    ): Promise<Finding[]>;
+  fetchFindings(entity: Entity): Promise<Finding[]>;
 
-    fetchMetrics(
-        entity: Entity
-    ): Promise<ProjectMetrics>;
+  fetchMetrics(entity: Entity): Promise<ProjectMetrics>;
 }

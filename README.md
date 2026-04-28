@@ -29,7 +29,6 @@ The alpha entry point auto-registers:
 
 - the Dependencytrack API client
 - the summary entity card on compatible catalog entities
-- the findings entity card on compatible catalog entities
 - the `Dependencytrack` entity tab at `/dependencytrack`
 
 Use the root entry point if you still need the legacy app-wired extensions.

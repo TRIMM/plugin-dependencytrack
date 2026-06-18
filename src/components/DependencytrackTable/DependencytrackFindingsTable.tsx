@@ -23,13 +23,7 @@ const defineSeverityScore = (finding: Finding): number | undefined => {
 };
 
 const defineSeverityOrder = (finding: Finding): number => {
-  const rawSeverity = finding.vulnerability.severity as unknown;
-
-  if (typeof rawSeverity === 'number') {
-    return rawSeverity;
-  }
-
-  const normalizedSeverity = String(rawSeverity).toUpperCase();
+  const normalizedSeverity = finding.vulnerability.severity.toUpperCase();
   return severityOrderMap[normalizedSeverity] ?? finding.vulnerability.severityRank;
 };
 
@@ -64,7 +58,7 @@ const DependencytrackFindingsTable = ({
     dependency: finding.component.name,
     name: finding.vulnerability.cweName,
     version: finding.component.version,
-    severity: finding.vulnerability.severity.toString(),
+    severity: finding.vulnerability.severity,
     severityOrder: defineSeverityOrder(finding),
     score: defineSeverityScore(finding) ?? null,
     vulnerability: finding.vulnerability.vulnId,

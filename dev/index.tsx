@@ -13,7 +13,7 @@ import {
   DependencytrackProject,
   ProjectMetrics,
 } from '../src';
-import { ANALYZER_IDENTITY, CLASSIFIER, Finding, SEVERITY } from '../src/api/dependencytrack-types';
+import { ANALYZER_IDENTITY, CLASSIFIER, Finding } from '../src/api/dependencytrack-types';
 
 const entity: Entity = {
   apiVersion: 'backstage.io/v1alpha1',
@@ -62,7 +62,7 @@ const baseFindings: Finding[] = [
       source: 'NVD',
       vulnId: 'CVE-2023-34610',
       cvssV3BaseScore: 7.5,
-      severity: SEVERITY.HIGH,
+      severity: 'HIGH',
       severityRank: 1,
       epssScore: 0.00052,
       epssPercentile: 0.19933,
@@ -106,7 +106,7 @@ const baseFindings: Finding[] = [
       vulnId: 'CVE-2018-14335',
       cvssV2BaseScore: 4.0,
       cvssV3BaseScore: 6.5,
-      severity: SEVERITY.MEDIUM,
+      severity: 'MEDIUM',
       severityRank: 2,
       epssScore: 0.0121,
       epssPercentile: 0.85228,

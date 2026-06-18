@@ -70,14 +70,13 @@ export type Component = {
   project: string;
 };
 
-export enum SEVERITY {
-  CRITICAL,
-  HIGH,
-  MEDIUM,
-  LOW,
-  INFO,
-  UNASSIGNED,
-}
+export type SEVERITY =
+  | 'CRITICAL'
+  | 'HIGH'
+  | 'MEDIUM'
+  | 'LOW'
+  | 'INFO'
+  | 'UNASSIGNED';
 
 export type Vulnerability = {
   uuid: string;

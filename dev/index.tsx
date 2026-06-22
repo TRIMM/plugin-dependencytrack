@@ -4,22 +4,29 @@ import { dependencytrackPlugin } from '../src/plugin';
 import { Content, Header, Page } from '@backstage/core-components';
 import { EntityProvider } from '@backstage/plugin-catalog-react';
 import { TestApiProvider } from '@backstage/test-utils';
-import Grid from '@mui/material/Grid';
-import { EntityDependencytrackSummaryCard, EntityDependencytrackFindingCard, DependencytrackApi, dependencytrackApiRef, DependencytrackProject, ProjectMetrics } from '../src';
-import { ANALYZER_IDENTITY, CLASSIFIER, Finding, SEVERITY } from '../src/api/dependencytrack-types';
+import { Grid } from '@backstage/ui';
+import {
+  EntityDependencytrackSummaryCard,
+  EntityDependencytrackFindingCard,
+  DependencytrackApi,
+  dependencytrackApiRef,
+  DependencytrackProject,
+  ProjectMetrics,
+} from '../src';
+import { ANALYZER_IDENTITY, CLASSIFIER, Finding } from '../src/api/dependencytrack-types';
 
 const entity: Entity = {
-  apiVersion: "backstage.io/v1alpha1",
-  kind: "Component",
+  apiVersion: 'backstage.io/v1alpha1',
+  kind: 'Component',
   metadata: {
-    name: "trimm-website",
-    description: "TRIMM Website",
+    name: 'trimm-website',
+    description: 'TRIMM Website',
     annotations: {
-      "dependencytrack/project-id": "d7605a97-3038-4580-ac67-68096ca1707e",
+      'dependencytrack/project-id': 'd7605a97-3038-4580-ac67-68096ca1707e',
     },
   },
   spec: {
-    type: "website",
+    type: 'website',
   },
 };
 
@@ -44,32 +51,32 @@ const projectMetrics: ProjectMetrics = {
 const baseFindings: Finding[] = [
   {
     component: {
-      uuid: "7d0210e9-4dd1-459b-85e5-cdba7dfd385f",
-      name: "json-io",
-      version: "4.14.0",
-      purl: "pkg:maven/com.cedarsoftware/json-io@4.14.0",
-      project: "d7605a97-3038-4580-ac67-68096ca1707e",
+      uuid: '7d0210e9-4dd1-459b-85e5-cdba7dfd385f',
+      name: 'json-io',
+      version: '4.14.0',
+      purl: 'pkg:maven/com.cedarsoftware/json-io@4.14.0',
+      project: 'd7605a97-3038-4580-ac67-68096ca1707e',
     },
     vulnerability: {
-      uuid: "1bbb1afa-55fa-4c40-8751-e1d61e177bb8",
-      source: "NVD",
-      vulnId: "CVE-2023-34610",
+      uuid: '1bbb1afa-55fa-4c40-8751-e1d61e177bb8',
+      source: 'NVD',
+      vulnId: 'CVE-2023-34610',
       cvssV3BaseScore: 7.5,
-      severity: SEVERITY.HIGH,
+      severity: 'HIGH',
       severityRank: 1,
       epssScore: 0.00052,
       epssPercentile: 0.19933,
       cweId: 787,
-      cweName: "Out-of-bounds Write",
+      cweName: 'Out-of-bounds Write',
       cwes: [
         {
           cweId: 787,
-          name: "Out-of-bounds Write",
+          name: 'Out-of-bounds Write',
         },
       ],
       aliases: [],
       description:
-        "An issue was discovered json-io thru 4.14.0 allows attackers to cause a denial of service or other unspecified impacts via crafted object that uses cyclic dependencies.",
+        'An issue was discovered json-io thru 4.14.0 allows attackers to cause a denial of service or other unspecified impacts via crafted object that uses cyclic dependencies.',
       recommendation: null,
     },
     analysis: {
@@ -78,28 +85,28 @@ const baseFindings: Finding[] = [
     attribution: {
       analyzerIdentity: ANALYZER_IDENTITY.OSSINDEX_ANALYZER,
       attributedOn: 1715847506437,
-      alternateIdentifier: "CVE-2023-34610",
+      alternateIdentifier: 'CVE-2023-34610',
       referenceUrl:
-        "https://ossindex.sonatype.org/vulnerability/CVE-2023-34610?component-type=maven&component-name=com.cedarsoftware%2Fjson-io&utm_source=dependency-track&utm_medium=integration&utm_content=v4.6.3",
+        'https://ossindex.sonatype.org/vulnerability/CVE-2023-34610?component-type=maven&component-name=com.cedarsoftware%2Fjson-io&utm_source=dependency-track&utm_medium=integration&utm_content=v4.6.3',
     },
     matrix:
-      "d7605a97-3038-4580-ac67-68096ca1707e:7d0210e9-4dd1-459b-85e5-cdba7dfd385f:1bbb1afa-55fa-4c40-8751-e1d61e177bb8",
+      'd7605a97-3038-4580-ac67-68096ca1707e:7d0210e9-4dd1-459b-85e5-cdba7dfd385f:1bbb1afa-55fa-4c40-8751-e1d61e177bb8',
   },
   {
     component: {
-      uuid: "a9fa6098-7fd1-4dfb-a948-25116364d82d",
-      name: "h2",
-      version: "2.1.214",
-      purl: "pkg:maven/com.h2database/h2@2.1.214",
-      project: "d7605a97-3038-4580-ac67-68096ca1707e",
+      uuid: 'a9fa6098-7fd1-4dfb-a948-25116364d82d',
+      name: 'h2',
+      version: '2.1.214',
+      purl: 'pkg:maven/com.h2database/h2@2.1.214',
+      project: 'd7605a97-3038-4580-ac67-68096ca1707e',
     },
     vulnerability: {
-      uuid: "66f2919b-01ad-4ad8-a275-0093c55cb3e6",
-      source: "NVD",
-      vulnId: "CVE-2018-14335",
+      uuid: '66f2919b-01ad-4ad8-a275-0093c55cb3e6',
+      source: 'NVD',
+      vulnId: 'CVE-2018-14335',
       cvssV2BaseScore: 4.0,
       cvssV3BaseScore: 6.5,
-      severity: SEVERITY.MEDIUM,
+      severity: 'MEDIUM',
       severityRank: 2,
       epssScore: 0.0121,
       epssPercentile: 0.85228,
@@ -113,7 +120,7 @@ const baseFindings: Finding[] = [
       ],
       aliases: [],
       description:
-        "An issue was discovered in H2 1.4.197. Insecure handling of permissions in the backup function allows attackers to read sensitive files (outside of their permissions) via a symlink to a fake database file.",
+        'An issue was discovered in H2 1.4.197. Insecure handling of permissions in the backup function allows attackers to read sensitive files (outside of their permissions) via a symlink to a fake database file.',
       recommendation: null,
     },
     analysis: {
@@ -122,12 +129,12 @@ const baseFindings: Finding[] = [
     attribution: {
       analyzerIdentity: ANALYZER_IDENTITY.OSSINDEX_ANALYZER,
       attributedOn: 1715847509973,
-      alternateIdentifier: "CVE-2018-14335",
+      alternateIdentifier: 'CVE-2018-14335',
       referenceUrl:
-        "https://ossindex.sonatype.org/vulnerability/CVE-2018-14335?component-type=maven&component-name=com.h2database%2Fh2&utm_source=dependency-track&utm_medium=integration&utm_content=v4.6.3",
+        'https://ossindex.sonatype.org/vulnerability/CVE-2018-14335?component-type=maven&component-name=com.h2database%2Fh2&utm_source=dependency-track&utm_medium=integration&utm_content=v4.6.3',
     },
     matrix:
-      "d7605a97-3038-4580-ac67-68096ca1707e:a9fa6098-7fd1-4dfb-a948-25116364d82d:66f2919b-01ad-4ad8-a275-0093c55cb3e6",
+      'd7605a97-3038-4580-ac67-68096ca1707e:a9fa6098-7fd1-4dfb-a948-25116364d82d:66f2919b-01ad-4ad8-a275-0093c55cb3e6',
   },
 ];
 
@@ -155,7 +162,7 @@ const mockedApi: DependencytrackApi = {
       lastInheritedRiskScore: 0,
       active: false,
       metrics: projectMetrics,
-      findings: []
+      findings: [],
     };
     return Promise.resolve(data);
   },
@@ -164,7 +171,7 @@ const mockedApi: DependencytrackApi = {
   },
   fetchMetrics(): Promise<ProjectMetrics> {
     return Promise.resolve(projectMetrics);
-  }
+  },
 };
 
 createDevApp()
@@ -176,14 +183,14 @@ createDevApp()
           <Page themeId="tool">
             <Header title="Dependency-Track" />
             <Content>
-              <Grid>
-                <Grid item md={6}>
-                  <EntityDependencytrackSummaryCard/>
-                </Grid>
-                <Grid item md={12}>
-                  <EntityDependencytrackFindingCard/>
-                </Grid>
-              </Grid>
+              <Grid.Root columns={{ initial: '1', md: '12' }} gap="4">
+                <Grid.Item colSpan={{ initial: '1', md: '6' }}>
+                  <EntityDependencytrackSummaryCard />
+                </Grid.Item>
+                <Grid.Item colSpan="12">
+                  <EntityDependencytrackFindingCard />
+                </Grid.Item>
+              </Grid.Root>
             </Content>
           </Page>
         </EntityProvider>

@@ -53,7 +53,7 @@
     "@backstage/ui": "^0.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@material-table/core": "^3.1.0",
+    "@material-table/core": "^7.0.0",
     "react-use": "^17.6.0"
   },
   "peerDependencies": {

@@ -101,7 +101,9 @@ import {
 
 ### Add to catalog-info.yaml
 
-Add `dependencytrack/project-id` to your `catalog-info.yaml`:
+Reference the DependencyTrack project from your `catalog-info.yaml` in one of two ways.
+
+**By project name (recommended when the project carries one version per build).** The plugin resolves the project's latest version through DependencyTrack's `isLatest` flag at read time, so the link always follows the current build and never needs re-pinning:
 
 ```yaml
 # Example catalog-info.yaml entity definition file
@@ -110,5 +112,16 @@ kind: Component
 metadata:
   # ...
   annotations:
-    dependencytrack/project-id: <project-id> # e63d5397-5e9e-494a-4755-368c2b1dc446
+    dependencytrack/project-name: my-service # the DependencyTrack project name
 ```
+
+**By project id (a fixed version UUID).** Pins one specific project version:
+
+```yaml
+metadata:
+  # ...
+  annotations:
+    dependencytrack/project-id: e63d5397-5e9e-494a-4755-368c2b1dc446
+```
+
+If both annotations are present, `dependencytrack/project-id` takes precedence. The name lookup calls `GET /api/v1/project/latest/{name}`, so make sure the proxy `allowedMethods` permits `GET` (it does in the example above).

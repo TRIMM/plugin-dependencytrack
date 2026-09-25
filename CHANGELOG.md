@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.4.0...v0.5.0) (2026-09-25)
+
+
+### Features
+
+* resolve DependencyTrack project by name (dependencytrack/project-name) ([#121](https://github.com/TRIMM/plugin-dependencytrack/issues/121)) ([d21c609](https://github.com/TRIMM/plugin-dependencytrack/commit/d21c6099b4a3479cc486396ade65d3212a9747ff))
+
 ## [0.4.0](https://github.com/TRIMM/plugin-dependencytrack/compare/v0.3.3...v0.4.0) (2026-06-22)
 
 

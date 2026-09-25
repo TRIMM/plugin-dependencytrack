@@ -6,7 +6,7 @@ import { Options } from '@material-table/core';
 import { useEffect } from 'react';
 import useAsync from 'react-use/lib/useAsync';
 import { dependencytrackApiRef } from '../../api';
-import { DEPENDENCYTRACK_PROJECT_ID_ANNOTATION, useProjectId } from '../hooks';
+import { DEPENDENCYTRACK_PROJECT_ID_ANNOTATION, useProjectId, useProjectName } from '../hooks';
 import DependencytrackMetricsTable from '../DependencytrackTable/DependencytrackMetricsTable';
 import DependencytrackFindingTable from '../DependencytrackTable/DependencytrackFindingsTable';
 
@@ -23,9 +23,11 @@ export const DependencytrackSummaryCard = ({
   const dependencytrackApi = useApi(dependencytrackApiRef);
 
   const projectId = useProjectId(entity);
+  const projectName = useProjectName(entity);
+  const projectRef = projectId || projectName;
   const { loading, value, error } = useAsync(() => {
     return dependencytrackApi.fetchMetrics(entity);
-  }, [dependencytrackApi, projectId]);
+  }, [dependencytrackApi, projectRef]);
 
   useEffect(() => {
     if (error) {
@@ -33,12 +35,12 @@ export const DependencytrackSummaryCard = ({
     }
   }, [error, errorApi]);
 
-  if (loading || !projectId || error) {
+  if (loading || !projectRef || error) {
     return (
       <InfoCard title="Dependencytrack Metrics" variant={variant}>
         {loading && <Progress />}
 
-        {!loading && !projectId && (
+        {!loading && !projectRef && (
           <MissingAnnotationEmptyState annotation={DEPENDENCYTRACK_PROJECT_ID_ANNOTATION} />
         )}
 
@@ -46,7 +48,7 @@ export const DependencytrackSummaryCard = ({
           <EmptyState
             missing="info"
             title="No information to display"
-            description={`There is no Dependencytrack project with id '${projectId}'.`}
+            description={`There is no Dependencytrack project with reference '${projectRef}'.`}
           />
         )}
       </InfoCard>
@@ -69,9 +71,11 @@ export const DependencytrackFindingCard = ({
   const dependencytrackApi = useApi(dependencytrackApiRef);
 
   const projectId = useProjectId(entity);
+  const projectName = useProjectName(entity);
+  const projectRef = projectId || projectName;
   const { loading, value, error } = useAsync(
     () => dependencytrackApi.fetchFindings(entity),
-    [dependencytrackApi, projectId],
+    [dependencytrackApi, projectRef],
   );
 
   useEffect(() => {
@@ -80,12 +84,12 @@ export const DependencytrackFindingCard = ({
     }
   }, [error, errorApi]);
 
-  if (loading || !projectId || error) {
+  if (loading || !projectRef || error) {
     return (
       <InfoCard title="Dependencytrack Findings" variant={variant}>
         {loading && <Progress />}
 
-        {!loading && !projectId && (
+        {!loading && !projectRef && (
           <MissingAnnotationEmptyState annotation={DEPENDENCYTRACK_PROJECT_ID_ANNOTATION} />
         )}
 
@@ -93,7 +97,7 @@ export const DependencytrackFindingCard = ({
           <EmptyState
             missing="info"
             title="No information to display"
-            description={`There is no Dependencytrack project with id '${projectId}'.`}
+            description={`There is no Dependencytrack project with reference '${projectRef}'.`}
           />
         )}
       </InfoCard>

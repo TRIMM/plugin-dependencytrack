@@ -49,7 +49,7 @@
     "@backstage/core-plugin-api": "^1.12.4",
     "@backstage/frontend-plugin-api": "^0.15.0",
     "@backstage/plugin-catalog-react": "^2.1.0",
-    "@backstage/theme": "^0.7.2",
+    "@backstage/theme": "^0.7.3",
     "@backstage/ui": "^0.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",

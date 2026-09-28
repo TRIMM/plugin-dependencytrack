@@ -1856,6 +1856,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backstage/theme@npm:^0.7.3":
+  version: 0.7.3
+  resolution: "@backstage/theme@npm:0.7.3"
+  dependencies:
+    "@emotion/react": "npm:^11.10.5"
+    "@emotion/styled": "npm:^11.10.5"
+    "@mui/material": "npm:^5.12.2"
+  peerDependencies:
+    "@material-ui/core": ^4.12.2
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    react-router-dom: ^6.30.2
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10/78977e885149be43a52b12c9c199afcd7dbf9fead62f7630273ad12841955b802bb02ca23f8516bdc7f0e968407228bb6fee07ccef20603679c0801df7e210f6
+  languageName: node
+  linkType: hard
+
 "@backstage/types@npm:^1.2.1, @backstage/types@npm:^1.2.2":
   version: 1.2.2
   resolution: "@backstage/types@npm:1.2.2"
@@ -7125,7 +7145,7 @@ __metadata:
     "@backstage/plugin-catalog": "npm:^1.33.1"
     "@backstage/plugin-catalog-react": "npm:^2.1.0"
     "@backstage/test-utils": "npm:^1.7.16"
-    "@backstage/theme": "npm:^0.7.2"
+    "@backstage/theme": "npm:^0.7.3"
     "@backstage/ui": "npm:^0.14.0"
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.1"
